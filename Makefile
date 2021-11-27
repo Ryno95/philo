@@ -15,6 +15,7 @@ $(NAME): $(SRCS)
 
 test: $(SRCS) $(TEST_SRCS)
 	$(CC) $(CFLAGS) $(TEST_SRCS) -o $(TEST_NAME)
+	./$(TEST_NAME)
 
 acceptence: $(NAME)
 	./Acceptence_test/acceptence.sh

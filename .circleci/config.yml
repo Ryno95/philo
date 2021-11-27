@@ -12,3 +12,6 @@ jobs:
       - run:
           name: Norminette
           command: norminette main.c
+      - run:
+          name: Unit_tests
+          command: make test

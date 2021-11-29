@@ -14,6 +14,8 @@ all:$(NAME)
 $(NAME): $(SRCS)
 	$(CC) $(CFLAGS) main.c $(SRCS) -o $(NAME)
 
+run: $(NAME)
+	./run.sh
 test: $(SRCS) $(TEST_SRCS)
 	$(CC) $(CFLAGS) $(SRCS) $(TEST_SRCS) -o $(TEST_NAME)
 	./$(TEST_NAME)

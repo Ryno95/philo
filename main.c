@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 20:10:57 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/11/29 20:24:14 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 // 	i = 0;
 // 	while (i < number_of_threads)
 // 	{
-// 		if (pthread_create(&threads[i], NULL, (void *)&routine, NULL) != SUCCESS)
+// 		if (pthread_create(&threads[i],
+//  NULL, (void *)&routine, NULL) != SUCCESS)
 // 			return (ERROR);
 // 		++i;
 // 		printf("thread started: %d\n", i);

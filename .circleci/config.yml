@@ -11,7 +11,10 @@ jobs:
           command: 'apt-get update && apt-get install -y clang gcc make python3 python3-pip && apt-get install -y libreadline-dev && pip3 install -U norminette'
       - run:
           name: Norminette
-          command: norminette main.c
+          command: norminette main.c src/
       - run:
           name: Unit_tests
           command: make test
+      - run:
+          name: Acceptance-Test ASAN
+          command: make run_asan

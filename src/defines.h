@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser.c                                           :+:    :+:            */
+/*   defines.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 13:40:21 by rmeiboom      ########   odam.nl         */
+/*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
+/*   Updated: 2021/11/29 13:33:40 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defines.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-t_bool	is_valid_input(const int argc, const char *argv[])
+typedef enum e_exit_status
 {
-	(void)argv;
-	if (argc != 5 && argc != 6)
-		return (FALSE);
-	return (TRUE);
-}
+	SUCCESS,
+	ERROR
+}	t_exit_status;
 
-t_exit_status parser(int argc, const char *argv[])
+typedef enum e_bool
 {
-	(void)argc;
-	(void)argv;
-	return (SUCCESS);
-}
+	FALSE,
+	TRUE
+}	t_bool;
+
+#endif

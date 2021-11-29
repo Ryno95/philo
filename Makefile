@@ -3,18 +3,19 @@ TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 
-SRCS= main.c 
+SRCS= src/parser.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\
+			Unit_tests/parser_tests.c\
 
 all:$(NAME)
 
 $(NAME): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) main.c $(SRCS) -o $(NAME)
 
 test: $(SRCS) $(TEST_SRCS)
-	$(CC) $(CFLAGS) $(TEST_SRCS) -o $(TEST_NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(TEST_SRCS) -o $(TEST_NAME)
 	./$(TEST_NAME)
 
 acceptence: $(NAME)

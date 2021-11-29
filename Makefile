@@ -25,7 +25,7 @@ acceptence: $(NAME)
 	./Acceptence_test/acceptence.sh
 
 run_asan: $(SRCS)
-	@$(CC) $(CFLAGS_ASAN) $(SRCS) $(TEST_FILES) -o $(NAME)
+	@$(CC) $(CFLAGS_ASAN) main.c $(SRCS) $(TEST_FILES) -o $(NAME)
 	./run.sh
 
 %.o: %.c

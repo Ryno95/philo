@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 20:24:14 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/11/29 21:30:54 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,5 @@ int	main(const int argc, const char *argv[])
 	if (!is_valid_input(argc, argv))
 		return (ERROR);
 	parse(argv);
-	if (0)
-		printf("is_true\n");
 	return (SUCCESS);
 }

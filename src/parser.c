@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 20:48:34 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/11/29 21:35:52 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_bool	is_valid_input(const int argc, const char *argv[])
 	return (TRUE);
 }
 
-// checks that num_str is positive and not decimal
+// Checks that num_str is positive and not decimal
+// Bash trims spaces
 int	get_number(const char *str)
 {
 	const int	length = ft_strlen(str);
@@ -31,8 +32,8 @@ int	get_number(const char *str)
 	i = 0;
 	while (i < length && ft_isdigit(str[i]))
 		i++;
-	if (i != length)
-		return (0);
+	if (i != length || !length)
+		return (INVALID_NUMBER);
 	else
 		return (ft_atoi(str));
 }

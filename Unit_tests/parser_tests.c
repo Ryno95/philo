@@ -23,6 +23,15 @@ CTEST(Parsing, assign_valid_philo_stats)
 	ASSERT_EQUAL(4, stats.max_meals);
 }
 
+CTEST(Parsing, check_get_num_invalid_nums)
+{
+	ASSERT_EQUAL(INVALID_NUMBER, get_number("-2"));
+	ASSERT_EQUAL(INVALID_NUMBER, get_number("0"));
+	ASSERT_EQUAL(INVALID_NUMBER, get_number("2.2"));
+	ASSERT_EQUAL(INVALID_NUMBER, get_number(""));
+	ASSERT_EQUAL(INVALID_NUMBER, get_number("0.93"));
+}
+
 CTEST(Parsing, invalid_num_of_philos)
 {
 	static t_philo_stats	stats;

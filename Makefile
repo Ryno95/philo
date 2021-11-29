@@ -3,7 +3,7 @@ TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 
-SRCS= src/parser.c
+SRCS= src/parser.c src/parser_utils.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\

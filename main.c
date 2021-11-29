@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 13:39:07 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/11/29 20:10:57 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "src/parser.h"
+#include "src/defines.h"
 
 // int	create_threads(pthread_t *threads, const int number_of_threads)
 // {
@@ -49,5 +50,8 @@ int	main(const int argc, const char *argv[])
 {
 	if (!is_valid_input(argc, argv))
 		return (ERROR);
+	parse(argv);
+	if (0)
+		printf("is_true\n");
 	return (SUCCESS);
 }

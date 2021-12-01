@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/01 14:13:21 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/01 15:47:16 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo_stats
 
 typedef struct s_fork
 {
-	pthread_mutex_t fork_lock;
+	pthread_mutex_t	fork_lock;
 	t_bool			is_taken;
 }	t_fork;
 

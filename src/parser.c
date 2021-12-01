@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/01 15:21:44 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/01 15:43:57 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,5 @@ t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
 		stats->max_meals = -1;
 	if (!is_valid_stats(stats))
 		return (ERROR);
-	return (SUCCESS);
-}
-
-
-
-t_exit_status	parse(const char *argv[])
-{
-	static t_philo_stats	stats;
-	// t_fork					*forks;
-	// t_philo					*philos;
-
-	if (parse_philo_stats(argv, &stats) == ERROR)
-		return (3);
-	// forks = create_forks(stats.num_of_philos);
-	// philos = create_philo_array(&stats, forks);
-	// if (!forks || !philos)
-	// 	printf("It's a fuckup!\n");
-	// int i = 0;
-	// while (i < (int)stats.num_of_philos)
-	// {
-	// 	printf("philo_num: %d\n philo left fork taken: %d\n", philos[i].index, philos[i].left_fork->is_taken);
-	// 	i++;
-	// }
 	return (SUCCESS);
 }

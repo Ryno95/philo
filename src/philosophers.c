@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/01 15:10:40 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/01 15:38:05 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/01 15:47:01 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ t_philo	*create_philo_array(t_philo_stats *stats, t_fork *forks)
 	return (philosophers);
 }
 
+static void	*destroy_forks(int num_of_forks, t_fork *forks)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_of_forks)
+	{
+		pthread_mutex_destroy(&forks[i].fork_lock);
+		++i;
+	}
+	free(forks);
+	return (NULL);
+}
+
 t_fork	*create_forks(int num_of_forks)
 {
 	t_fork	*forks;
@@ -50,14 +64,17 @@ t_fork	*create_forks(int num_of_forks)
 	{
 		forks[i].is_taken = FALSE;
 		if (pthread_mutex_init(&forks[i].fork_lock, NULL) != SUCCESS)
+		{
 			printf("init mutex lock failed");
-			// return(destroy_forks(forks));
+			return (destroy_forks(i, forks));
+		}
 		++i;
 	}
 	return (forks);
 }
 
-t_exit_status	create_philosphers(t_philo_stats *stats, t_fork **forks, t_philo **philos)
+t_exit_status	create_philosphers(t_philo_stats *stats, t_fork **forks,
+									t_philo **philos)
 {
 	*forks = create_forks(stats->num_of_philos);
 	if (!*forks)

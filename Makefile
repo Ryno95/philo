@@ -3,7 +3,7 @@ TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
-SRCS= src/parser.c src/parser_utils.c
+SRCS= src/parser.c src/parser_utils.c src/philosophers.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\

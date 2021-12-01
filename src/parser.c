@@ -6,13 +6,14 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/11/29 21:35:52 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/01 14:35:25 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defines.h"
 #include "parser.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 t_bool	is_valid_input(const int argc, const char *argv[])
 {
@@ -62,12 +63,66 @@ t_exit_status	get_philo_stats(const char *argv[], t_philo_stats *stats)
 	return (SUCCESS);
 }
 
+t_philo	*create_philo_array(t_philo_stats *stats, t_fork *forks)
+{
+	t_philo			*philosophers;
+	unsigned int	i;
+
+	philosophers = malloc(stats->num_of_philos * sizeof(t_philo));
+	if (!philosophers)
+		return (NULL);
+	i = 0;
+	while (i < stats->num_of_philos)
+	{
+		philosophers[i].index = i;
+		philosophers[i].stats = stats;
+		if (i == 0)
+			philosophers[i].right_fork = &forks[stats->num_of_philos - 1];
+		else
+			philosophers[i].right_fork = &forks[i - 1];
+		philosophers[i].left_fork = &forks[i];
+		++i;
+	}
+	return (philosophers);
+}
+
+t_fork	*create_forks(int num_of_forks)
+{
+	t_fork	*forks;
+	int		i;
+
+	forks = (t_fork *)malloc(num_of_forks * sizeof(t_fork));
+	if (!forks)
+		return (NULL);
+	i = 0;
+	while (i < num_of_forks)
+	{
+		forks[i].is_taken = FALSE;
+		if (pthread_mutex_init(&forks[i].fork_lock, NULL) != SUCCESS)
+			printf("init mutex lock failed");
+			// return(destroy_forks(forks));
+		++i;
+	}
+	return (forks);
+}
+
 t_exit_status	parse(const char *argv[])
 {
 	static t_philo_stats	stats;
+	t_fork					*forks;
+	t_philo					*philos;
 
 	if (get_philo_stats(argv, &stats) == ERROR)
 		return (3);
-	printf("philo_count: %d\n", stats.num_of_philos);
+	forks = create_forks(stats.num_of_philos);
+	philos = create_philo_array(&stats, forks);
+	if (!forks || !philos)
+		printf("It's a fuckup!\n");
+	int i = 0;
+	while (i < (int)stats.num_of_philos)
+	{
+		printf("philo_num: %d\n philo left fork taken: %d\n", philos[i].index, philos[i].left_fork->is_taken);
+		i++;
+	}
 	return (SUCCESS);
 }

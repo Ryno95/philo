@@ -1,7 +1,7 @@
 #include "ctest.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 CTEST(simple_test, num_compare)
 {

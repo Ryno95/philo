@@ -2,22 +2,32 @@ NAME=philosophers
 TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-
-SRCS= main.c 
+CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
+SRCS= src/parser.c src/parser_utils.c src/philosophers.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\
+			Unit_tests/parser_tests.c\
+			Unit_tests/create_philos_tests.c\
 
 all:$(NAME)
 
 $(NAME): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) main.c $(SRCS) -o $(NAME)
+
+run: $(NAME)
+	./run.sh
 
 test: $(SRCS) $(TEST_SRCS)
-	$(CC) $(CFLAGS) $(TEST_SRCS) -o $(TEST_NAME)
+	$(CC) $(CFLAGS) $(SRCS) $(TEST_SRCS) -o $(TEST_NAME)
+	./$(TEST_NAME)
 
 acceptence: $(NAME)
 	./Acceptence_test/acceptence.sh
+
+run_asan: $(SRCS)
+	@$(CC) $(CFLAGS_ASAN) main.c $(SRCS) $(TEST_FILES) -o $(NAME)
+	./run.sh
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

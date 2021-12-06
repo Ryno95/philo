@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 14:21:51 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 14:25:49 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 
-typedef u_int64_t time_ms;
+typedef u_int64_t	t_time_ms;
 
 typedef enum e_exit_status
 {

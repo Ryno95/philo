@@ -3,10 +3,10 @@
 #include <stdio.h>
 #include "../src/ft_time.h"
 
-static u_int64_t get_time_difference(int wait_time)
+static t_time_ms get_time_difference(int wait_time)
 {
-	const u_int64_t	time = get_timestamp();
-	u_int64_t		time_diff;
+	const t_time_ms	time = get_timestamp();
+	t_time_ms		time_diff;
 
 	sleep_ms(wait_time);
 	time_diff = get_timestamp() - time;

@@ -6,16 +6,18 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 08:13:21 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 11:39:56 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "src/parser.h"
 #include "src/defines.h"
 #include "src/philosophers.h"
+#include "src/ft_time.h"
 
 // int	create_threads(pthread_t *threads, const int number_of_threads)
 // {

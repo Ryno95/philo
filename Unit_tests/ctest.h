@@ -455,12 +455,12 @@ static int suite_filter(struct ctest* t) {
     return strncmp(suite_name, t->ssname, strlen(suite_name)) == 0;
 }
 
-static uint64_t getCurrentTime(void) {
+static u_int64_t getCurrentTime(void) {
     struct timeval now;
     gettimeofday(&now, NULL);
-    uint64_t now64 = (uint64_t) now.tv_sec;
+    u_int64_t now64 = (u_int64_t) now.tv_sec;
     now64 *= 1000000;
-    now64 += ((uint64_t) now.tv_usec);
+    now64 += ((u_int64_t) now.tv_usec);
     return now64;
 }
 
@@ -512,7 +512,7 @@ __attribute__((no_sanitize_address)) int ctest_main(int argc, const char *argv[]
 #else
     color_output = isatty(1);
 #endif
-    uint64_t t1 = getCurrentTime();
+    u_int64_t t1 = getCurrentTime();
 
     struct ctest* ctest_begin = &CTEST_IMPL_TNAME(suite, test);
     struct ctest* ctest_end = &CTEST_IMPL_TNAME(suite, test);
@@ -571,7 +571,7 @@ __attribute__((no_sanitize_address)) int ctest_main(int argc, const char *argv[]
             idx++;
         }
     }
-    uint64_t t2 = getCurrentTime();
+    u_int64_t t2 = getCurrentTime();
 
     const char* color = (num_fail) ? ANSI_BRED : ANSI_GREEN;
     char results[80];

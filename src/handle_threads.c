@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 13:46:31 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 13:56:39 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,20 @@
 void	*routine(void *philos)
 {
 	const t_philo	*philo = (t_philo *)philos;
-	int i = 0;
+	int				i;
 
+	i = 0;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
 	while (i < 10)
 	{
 		if (!philo->left_fork->is_taken && !philo->right_fork->is_taken)
 		{
-			philo->left_fork->is_taken = pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
+			philo->left_fork->is_taken = \
+				pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
 			printf("philo %d has taken his left fork\n", philo->index + 1);
-			philo->right_fork->is_taken = pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
+			philo->right_fork->is_taken = \
+				pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
 			printf("philo %d has taken his right fork\n", philo->index + 1);
 			pthread_mutex_unlock(&philo->left_fork->fork_lock);
 			pthread_mutex_unlock(&philo->right_fork->fork_lock);

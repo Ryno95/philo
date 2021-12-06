@@ -6,13 +6,14 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 08:13:21 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 11:19:41 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "src/parser.h"
 #include "src/defines.h"
 #include "src/philosophers.h"
@@ -74,5 +75,9 @@ int	main(const int argc, const char *argv[])
 		return (ERROR);
 	if (run(argv) != SUCCESS)
 		printf("FUCKUP RUNNING\n");
+	uint64_t one = get_timestamp();
+	sleep_ms(1);
+	uint64_t two = get_timestamp() - one;
+	printf("should be +- 1: %llu\n", two);
 	return (SUCCESS);
 }

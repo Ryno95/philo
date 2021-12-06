@@ -32,7 +32,7 @@ CTEST2(Philo_creation, parse_multiple_philos)
 	const char *args[] = {"./philos", "3", "10", "1", "1", "4"};
 	parse_philo_stats(&args[0], &stats);
 	create_philosphers(&stats, &data->forks, &data->philos);
-	while (data->philos[i].stats)
+	while (data->philos[i].index == i)
 		++i;
 	ASSERT_EQUAL(3, i);
 	data->philos[0].right_fork->is_taken = TRUE;

@@ -3,12 +3,13 @@ TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
-SRCS= src/parser.c src/parser_utils.c src/philosophers.c
+SRCS= src/parser.c src/parser_utils.c src/philosophers.c src/ft_time.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\
 			Unit_tests/parser_tests.c\
 			Unit_tests/create_philos_tests.c\
+			Unit_tests/ft_time_tests.c\
 
 all:$(NAME)
 

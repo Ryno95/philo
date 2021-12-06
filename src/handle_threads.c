@@ -6,12 +6,13 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 13:56:39 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 14:20:45 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "defines.h"
 #include "ft_time.h"
 

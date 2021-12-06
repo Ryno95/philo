@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/01 15:47:16 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 14:21:51 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # define MAX_PHILOSOPHERS 1024
 
 # include <pthread.h>
+# include <stdlib.h>
+
+typedef u_int64_t time_ms;
 
 typedef enum e_exit_status
 {

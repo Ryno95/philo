@@ -8,6 +8,7 @@ SRCS= src/parser.c src/parser_utils.c src/philosophers.c
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\
 			Unit_tests/parser_tests.c\
+			Unit_tests/create_philos_tests.c\
 
 all:$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 11:19:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 11:28:33 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 11:39:11 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ uint64_t	get_timestamp(void)
 	return (value);
 }
 
+// only takes a positive number 
 void	sleep_ms(uint64_t sleep_ms)
 {
 	const uint64_t	start = get_timestamp();

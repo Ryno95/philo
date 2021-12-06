@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 11:22:03 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 11:37:10 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(const int argc, const char *argv[])
 		printf("FUCKUP RUNNING\n");
 	uint64_t one = get_timestamp();
 	sleep_ms(1);
-	uint64_t two = get_timestamp() - one;
+	uint64_t two = get_timestamp() - (-one);
 	printf("should be +- 1: %llu\n", two);
 	return (SUCCESS);
 }

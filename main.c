@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 11:54:22 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 13:00:20 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@
 
 void	*routine(void *philos)
 {
-	const t_philo *philo = (t_philo *)philos;
+	const t_philo	*philo = (t_philo *)philos;
+
 	printf("philo number: %d\n", philo->index + 1);
 	return (NULL);
 }
 
 int	create_threads(pthread_t *threads, t_philo *philos)
 {
-	const int num_of_philos = philos->stats->num_of_philos;
-	int	i;
+	const int	num_of_philos = philos->stats->num_of_philos;
+	int			i;
 
 	i = 0;
 	while (i < num_of_philos)
 	{
-		if (pthread_create(&threads[i], NULL, routine, (void *)&philos[i]) != SUCCESS)
+		if (pthread_create(&threads[i], NULL,
+				routine, (void *)&philos[i]) != SUCCESS)
 			return (ERROR);
 		++i;
 		printf("thread started: %d\n", i);

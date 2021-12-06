@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies GCC and CLANG and Norminette
-          command: 'apt-get update && apt-get install -y clang gcc make python3 python3-pip && apt-get install -y libreadline-dev && pip3 install -U norminette'
+          command: 'apt-get update && apt-get install -y clang gcc make python3 python3-pip && pip3 install -U norminette'
       - run:
           name: Norminette
           command: norminette main.c src/

@@ -6,20 +6,20 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 11:19:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 13:02:22 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2021/12/06 14:25:34 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <sys/time.h>
 #include <unistd.h>
 #include "defines.h"
 
-u_int64_t	get_timestamp(void)
+t_time_ms	get_timestamp(void)
 {
-	const u_int64_t	milli_factor = 1000;
+	const t_time_ms	milli_factor = 1000;
 	struct timeval	time;
-	u_int64_t		value;
+	t_time_ms		value;
 
 	gettimeofday(&time, NULL);
 	value = (time.tv_sec * milli_factor) + (time.tv_usec / milli_factor);
@@ -27,9 +27,9 @@ u_int64_t	get_timestamp(void)
 }
 
 // only takes a positive number 
-void	sleep_ms(u_int64_t sleep_ms)
+void	sleep_ms(t_time_ms sleep_ms)
 {
-	const u_int64_t	start = get_timestamp();
+	const t_time_ms	start = get_timestamp();
 
 	while (TRUE)
 	{

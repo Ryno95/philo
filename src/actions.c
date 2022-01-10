@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:04:48 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:06:56 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ typedef enum e_action_codes
 	DIE
 }	t_action_codes;
 
-void display_action(t_time_ms time, int philo_index, t_action_codes action_code)
+void	display_action(t_time_ms time, int philo_index,
+			t_action_codes action_code)
 {
-	static const char *actions[] = {
+	static const char	*actions[] = {
 										"is eating",
 										"is sleeping",
 										"is thinking",
@@ -34,11 +35,13 @@ void display_action(t_time_ms time, int philo_index, t_action_codes action_code)
 										"has taken right fork",
 										"died"
 									};
+
 	printf("%llu %d %s\n", time, philo_index, actions[action_code]);
 }
 
-void eat(const t_philo *philo)
+void	eat(const t_philo *philo)
 {
-	const t_time_ms time_stamp = get_timestamp() - philo->stats->start_time;
+	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
+
 	display_action(time_stamp, philo->index, EAT);
 }

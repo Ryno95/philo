@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 12:42:40 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:08:38 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "ft_time.h"
 #include "actions.h"
 
-
-static t_bool get_forks(const t_philo *philo)
+static t_bool	get_forks(const t_philo *philo)
 {
 	if (philo->left_fork->is_taken || philo->right_fork->is_taken)
 		return (FALSE);
@@ -31,13 +30,21 @@ static t_bool get_forks(const t_philo *philo)
 	return (TRUE);
 }
 
-static void drop_forks(const t_philo *philo)
+static void	drop_forks(const t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->left_fork->fork_lock);
 	pthread_mutex_unlock(&philo->right_fork->fork_lock);
 	philo->left_fork->is_taken = FALSE;
 	philo->right_fork->is_taken = FALSE;
 }
+
+// while dinner is not over / no one has died && 
+// amount of times to eat not reached
+// if has both forks 
+// 		EAT
+// if sleep && philo == DEAD
+// 		print death message and break loop
+// start_thinking
 
 void	*routine(void *philos)
 {
@@ -47,19 +54,13 @@ void	*routine(void *philos)
 	i = 0;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
-	// while dinner is not over / no one has died && amount of times to eat not reached
 	while (i < 5)
 	{
 		if (get_forks(philo))
 		{
-			// if has both forks 
-				// EAT
 			eat(philo);
 			drop_forks(philo);
 			sleep_ms(philo->stats->tt_sleep);
-			// if sleep && philo == DEAD
-				// print death message and break loop
-			// start_thinking
 		}
 		++i;
 	}

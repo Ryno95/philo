@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:06:56 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:28:49 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	display_action(t_time_ms time, int philo_index,
 	printf("%llu %d %s\n", time, philo_index, actions[action_code]);
 }
 
-void	eat(const t_philo *philo)
+void	eat(t_philo *philo)
 {
 	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
 
 	display_action(time_stamp, philo->index, EAT);
+	sleep_ms(philo->stats->tt_eat);
+	++philo->num_of_meals;
+	philo->last_meal = time_stamp;
 }

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 12:40:02 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:25:24 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_philo
 	t_philo_stats	*stats;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
+	t_time_ms		last_meal;
+	unsigned int	num_of_meals;
 }	t_philo;
 
 #endif

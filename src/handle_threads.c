@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:08:38 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:32:50 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 
 static t_bool	get_forks(const t_philo *philo)
 {
+	const t_bool has_reached_max_meals = (philo->num_of_meals >= philo->stats->max_meals);
+	
+	if (has_reached_max_meals)
+	{
+		// printf("max meals reached %d\n", philo->index);
+		return (FALSE);
+	}
 	if (philo->left_fork->is_taken || philo->right_fork->is_taken)
 		return (FALSE);
 	philo->left_fork->is_taken = \
@@ -54,7 +61,7 @@ void	*routine(void *philos)
 	i = 0;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
-	while (i < 5)
+	while (i < 300000)
 	{
 		if (get_forks(philo))
 		{

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/01 15:10:40 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 12:42:23 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 13:17:36 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_philo	*create_philo_array(t_philo_stats *stats, t_fork *forks)
 		else
 			philosophers[i].right_fork = &forks[i - 1];
 		philosophers[i].left_fork = &forks[i];
+		philosophers[i].num_of_meals = 0;
+		philosophers[i].last_meal = 0;
 		++i;
 	}
 	return (philosophers);

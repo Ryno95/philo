@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 16:11:52 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 16:14:48 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	think(t_philo *philo)
 {
 	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
 
-	sleep_ms(6);
 	display_action(time_stamp, philo, THINK);
 	return ;
 }

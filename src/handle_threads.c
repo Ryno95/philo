@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 16:12:39 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 16:16:51 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static t_bool	get_forks(const t_philo *philo)
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
+	printf("philo %d has taken his left fork\n", philo->index);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
+	printf("philo %d has taken his right fork\n", philo->index);
 	return (TRUE);
 }
 

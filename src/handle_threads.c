@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 11:42:36 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 12:42:40 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "defines.h"
 #include "ft_time.h"
+#include "actions.h"
 
 
 static t_bool get_forks(const t_philo *philo)
@@ -23,10 +24,10 @@ static t_bool get_forks(const t_philo *philo)
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
-	printf("philo %d has taken his left fork\n", philo->index + 1);
+	printf("philo %d has taken his left fork\n", philo->index);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
-	printf("philo %d has taken his right fork\n", philo->index + 1);
+	printf("philo %d has taken his right fork\n", philo->index);
 	return (TRUE);
 }
 
@@ -53,6 +54,7 @@ void	*routine(void *philos)
 		{
 			// if has both forks 
 				// EAT
+			eat(philo);
 			drop_forks(philo);
 			sleep_ms(philo->stats->tt_sleep);
 			// if sleep && philo == DEAD

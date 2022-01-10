@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 14:25:49 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 12:40:02 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 
 # include <pthread.h>
 # include <stdlib.h>
-
-typedef u_int64_t	t_time_ms;
+# include "ft_time.h"
 
 typedef enum e_exit_status
 {
@@ -35,6 +34,7 @@ typedef enum e_bool
 
 typedef struct s_philo_stats
 {
+	t_time_ms		start_time;
 	unsigned int	num_of_philos;
 	unsigned int	tt_die;
 	unsigned int	tt_eat;

@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_time.h                                          :+:    :+:            */
+/*   actions.h                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/06 11:20:47 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 12:40:07 by rmeiboom      ########   odam.nl         */
+/*   Created: 2022/01/10 11:45:48 by rmeiboom      #+#    #+#                 */
+/*   Updated: 2022/01/10 11:52:05 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TIME_H
-# define FT_TIME_H
+#ifndef ACTIONS_H
+# define ACTIONS_H
 
-# include "defines.h"
+#include "defines.h"
 
-typedef u_int64_t	t_time_ms;
-
-t_time_ms	get_timestamp(void);
-void		sleep_ms(t_time_ms sleep_ms);
+void eat(const t_philo *philo);
 
 #endif

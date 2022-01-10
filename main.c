@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 13:20:03 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 12:39:31 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "src/handle_threads.h"
 #include "src/parser.h"
 #include "src/philosophers.h"
-#include "src/ft_time.h"
 
 // void	*routine(void *philos)
 // {

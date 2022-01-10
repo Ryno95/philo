@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/01 15:43:57 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 12:38:09 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_bool	is_valid_stats(t_philo_stats *stats)
 
 t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
 {
+	stats->start_time = get_timestamp();
 	stats->num_of_philos = get_number(argv[1]);
 	stats->tt_die = get_number(argv[2]);
 	stats->tt_eat = get_number(argv[3]);

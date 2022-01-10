@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:32:50 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 16:12:39 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@
 
 static t_bool	get_forks(const t_philo *philo)
 {
-	const t_bool has_reached_max_meals = (philo->num_of_meals >= philo->stats->max_meals);
-	
+	const t_bool	has_reached_max_meals = \
+		(philo->num_of_meals >= philo->stats->max_meals);
+
 	if (has_reached_max_meals)
-	{
-		// printf("max meals reached %d\n", philo->index);
 		return (FALSE);
-	}
 	if (philo->left_fork->is_taken || philo->right_fork->is_taken)
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
-	printf("philo %d has taken his left fork\n", philo->index);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
-	printf("philo %d has taken his right fork\n", philo->index);
 	return (TRUE);
 }
 
@@ -55,21 +51,22 @@ static void	drop_forks(const t_philo *philo)
 
 void	*routine(void *philos)
 {
-	const t_philo	*philo = (t_philo *)philos;
-	int				i;
+	t_philo	*philo;
 
-	i = 0;
+	philo = (t_philo *)philos;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
-	while (i < 300000)
+	while (!philo->stats->death_has_happened)
 	{
 		if (get_forks(philo))
 		{
 			eat(philo);
 			drop_forks(philo);
+			if (!sleep(philo))
+				break ;
+			think(philo);
 			sleep_ms(philo->stats->tt_sleep);
 		}
-		++i;
 	}
 	return (NULL);
 }

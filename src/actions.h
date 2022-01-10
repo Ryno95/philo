@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:48 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:56:52 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 15:55:18 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include "defines.h"
 
 void	eat(t_philo *philo);
+t_bool	sleep(t_philo *philo);
+void	think(t_philo *philo);
 
 #endif

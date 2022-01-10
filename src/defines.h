@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:25:24 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 16:04:06 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,24 @@ typedef enum e_bool
 	TRUE
 }	t_bool;
 
+typedef struct s_display
+{
+	pthread_mutex_t	display_lock;
+	t_bool			is_in_use;
+}	t_display;
+
+
 typedef struct s_philo_stats
 {
 	t_time_ms		start_time;
 	unsigned int	num_of_philos;
 	unsigned int	tt_die;
 	unsigned int	tt_eat;
+	unsigned int	tt_think;
 	unsigned int	tt_sleep;
 	unsigned int	max_meals;
+	t_bool			death_has_happened;
+	t_display		*display;
 }	t_philo_stats;
 
 typedef struct s_fork

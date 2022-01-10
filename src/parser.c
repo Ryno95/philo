@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:16:23 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/10 15:52:19 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,25 @@ int	get_number(const char *str)
 t_bool	is_valid_stats(t_philo_stats *stats)
 {
 	if (!stats->num_of_philos || !stats->tt_die || !stats->tt_eat
-		|| !stats->tt_sleep || !stats->max_meals)
+		|| !stats->tt_sleep || !stats->max_meals || !stats->display)
 		return (FALSE);
 	return (TRUE);
+}
+
+t_display	*initiate_display()
+{
+	t_display	*disp;
+
+	disp = malloc(sizeof(t_display));
+	if (!disp)
+		return (NULL);
+	disp->is_in_use = FALSE;
+	if (pthread_mutex_init(&disp->display_lock, NULL) != SUCCESS)
+		{
+			printf("init mutex display lock failed\n");
+			return (NULL);
+		}
+	return (disp);
 }
 
 t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
@@ -55,6 +71,8 @@ t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
 	stats->tt_die = get_number(argv[2]);
 	stats->tt_eat = get_number(argv[3]);
 	stats->tt_sleep = get_number(argv[4]);
+	stats->death_has_happened = FALSE;
+	stats->display = initiate_display();
 	if (argv[5])
 		stats->max_meals = get_number(argv[5]);
 	else

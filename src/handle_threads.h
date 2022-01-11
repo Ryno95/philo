@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:17:07 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2021/12/06 13:18:12 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 14:27:08 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <pthread.h>
 # include "defines.h"
 
-void	*routine(void *philos);
 int		create_threads(pthread_t *threads, t_philo *philos);
 int		join_threads(pthread_t *threads, const int number_of_threads);
 

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 14:17:17 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:19:55 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define DEFINES_H
 # define FT_INT_MAX 2147483647
 # define FT_INT_MIN -2147483648
-# define MAX_PHILOSOPHERS 1024
+# define MAX_PHILOSOPHERS 256
 
 # include <pthread.h>
 # include <stdlib.h>
@@ -23,7 +23,10 @@
 typedef enum e_exit_status
 {
 	SUCCESS,
-	ERROR
+	ERROR,
+	INPUT_ERROR,
+	PHILO_CREATION_ERROR,
+	THREAD_CREATION_ERROR
 }	t_exit_status;
 
 typedef enum e_bool

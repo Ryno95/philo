@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:37:56 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 14:17:26 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:16:13 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PARSER_H
 # define INVALID_NUMBER 0
 # include "defines.h"
+
+# define USAGE_STRING "Usage: ./philo num_of_philos[ > 1] \
+tt_die tt_eat tt_sleep [number_of_times_each_philosopher_must_eat] "
 
 int				ft_isdigit(int c);
 int				ft_isspace(char c);

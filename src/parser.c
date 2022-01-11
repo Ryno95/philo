@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 14:15:47 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:14:51 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int	get_number(const char *str)
 // printf("Please entire only integer values bigger than zero\n");
 t_bool	is_valid_stats(t_philo_stats *stats)
 {
-	if (!stats->num_of_philos || !stats->tt_die || !stats->tt_eat
+	if (stats->num_of_philos < 2 || !stats->tt_die || !stats->tt_eat
 		|| !stats->tt_sleep || !stats->max_meals || !stats->display)
+	{
+		printf("%s\n", USAGE_STRING);
 		return (FALSE);
+	}
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 13:43:00 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 14:17:17 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_display
 	t_bool			is_in_use;
 }	t_display;
 
-
 typedef struct s_philo_stats
 {
 	t_time_ms		start_time;
@@ -68,5 +67,7 @@ typedef struct s_philo
 	t_time_ms		last_meal;
 	unsigned int	num_of_meals;
 }	t_philo;
+
+t_time_ms	get_timestamp(t_philo *philo);
 
 #endif

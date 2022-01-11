@@ -5,7 +5,8 @@ CFLAGS=-Wall -Wextra -Werror
 CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
 LDFLAGS=-lpthread
 
-SRCS= src/parser.c src/parser_utils.c src/philosophers.c src/ft_time.c src/handle_threads.c src/actions.c
+SRCS= 	src/parser.c src/parser_utils.c src/philosophers.c\
+		src/ft_time.c src/handle_threads.c src/actions.c src/last_supper.c
 
 TEST_SRCS= 	Unit_tests/main.c\
 			Unit_tests/tests.c\
@@ -40,6 +41,7 @@ clean:
 	rm -f $(NAME)
 	rm -f $(TEST_NAME)
 	rm -f *.o
+	rm -f norminette_result
 
 re: fclean all
 

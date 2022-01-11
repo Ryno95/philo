@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 13:58:20 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 14:16:55 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	display_action(t_time_ms time, t_philo *philo,
 
 	if (philo->stats->death_has_happened)
 		return ;
-	while (philo->stats->display->is_in_use && !philo->stats->death_has_happened)
+	while (philo->stats->display->is_in_use
+		&& !philo->stats->death_has_happened)
 		sleep_ms(1);
 	if (!philo->stats->display->is_in_use)
 	{
@@ -41,12 +42,11 @@ void	display_action(t_time_ms time, t_philo *philo,
 		if (action_code != DIE)
 			philo->stats->display->is_in_use = FALSE;
 	}
-
 }
 
 void	eat(t_philo *philo)
 {
-	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
+	const t_time_ms	time_stamp = get_timestamp(philo);
 
 	if (philo->stats->death_has_happened)
 		return ;
@@ -60,28 +60,26 @@ void	eat(t_philo *philo)
 
 t_bool	sleep(t_philo *philo)
 {
-	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
-	const int death_time = philo->last_meal + philo->stats->tt_die;
-	const int wake_up_time = time_stamp + philo->stats->tt_sleep;
+	const t_time_ms	time_stamp = get_timestamp(philo);
+	const int		death_time = philo->last_meal + philo->stats->tt_die;
+	const int		wake_up_time = time_stamp + philo->stats->tt_sleep;
 
 	if (philo->stats->death_has_happened)
 		return (FALSE);
 	if (wake_up_time > death_time)
 	{
-		display_action(get_timestamp() - philo->stats->start_time, philo, SLEEP);
+		display_action(time_stamp, philo, SLEEP);
 		sleep_ms(death_time - time_stamp);
 		return (FALSE);
 	}
-	display_action(get_timestamp() - philo->stats->start_time, philo, SLEEP);
+	display_action(time_stamp, philo, SLEEP);
 	sleep_ms(philo->stats->tt_sleep);
 	return (TRUE);
 }
 
 void	think(t_philo *philo)
 {
-	const t_time_ms	time_stamp = get_timestamp() - philo->stats->start_time;
-
-	display_action(time_stamp, philo, THINK);
+	display_action(get_timestamp(philo), philo, THINK);
 	sleep_ms(2);
 	return ;
 }

@@ -5,11 +5,11 @@
 
 static t_time_ms get_time_difference(int wait_time)
 {
-	const t_time_ms	time = get_timestamp();
+	const t_time_ms	time = get_time_ms();
 	t_time_ms		time_diff;
 
 	sleep_ms(wait_time);
-	time_diff = get_timestamp() - time;
+	time_diff = get_time_ms() - time;
 	return (time_diff);
 }
 

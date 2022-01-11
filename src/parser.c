@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 13:43:14 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 14:15:47 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_bool	is_valid_stats(t_philo_stats *stats)
 	return (TRUE);
 }
 
-t_display	*initiate_display()
+t_display	*initiate_display(void)
 {
 	t_display	*disp;
 
@@ -57,16 +57,16 @@ t_display	*initiate_display()
 		return (NULL);
 	disp->is_in_use = FALSE;
 	if (pthread_mutex_init(&disp->lock, NULL) != SUCCESS)
-		{
-			printf("init mutex display lock failed\n");
-			return (NULL);
-		}
+	{
+		printf("init mutex display lock failed\n");
+		return (NULL);
+	}
 	return (disp);
 }
 
 t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
 {
-	stats->start_time = get_timestamp();
+	stats->start_time = get_time_ms();
 	stats->num_of_philos = get_number(argv[1]);
 	stats->tt_die = get_number(argv[2]);
 	stats->tt_eat = get_number(argv[3]);

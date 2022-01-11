@@ -9,7 +9,7 @@ then
 fi
 
 # Number of philos | tt_die | tt_eat || tt_sleep || [num_of_tt_eat]
-./philo 3 5 2 2 
+./philo 4 310 200 100
 RETURN=$(echo $?)
 
 if [ $RETURN == "0" ]

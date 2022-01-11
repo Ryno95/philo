@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/06 13:15:49 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 16:16:51 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 13:53:56 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@
 #include "ft_time.h"
 #include "actions.h"
 
-static t_bool	get_forks(const t_philo *philo)
+static t_bool	get_forks(t_philo *philo)
 {
-	const t_bool	has_reached_max_meals = \
-		(philo->num_of_meals >= philo->stats->max_meals);
+	const int time_stamp = get_timestamp() - philo->stats->start_time;
 
-	if (has_reached_max_meals)
-		return (FALSE);
-	if (philo->left_fork->is_taken || philo->right_fork->is_taken)
+	if (philo->left_fork->is_taken || philo->right_fork->is_taken || philo->stats->death_has_happened)
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
-	printf("philo %d has taken his left fork\n", philo->index);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
-	printf("philo %d has taken his right fork\n", philo->index);
+	display_action(time_stamp, philo, TAKE_FORK);
+	display_action(time_stamp, philo, TAKE_FORK);
 	return (TRUE);
 }
 
@@ -51,6 +48,13 @@ static void	drop_forks(const t_philo *philo)
 // 		print death message and break loop
 // start_thinking
 
+t_bool	is_dinner_over(t_philo *philo)
+{
+	if (philo->stats->death_has_happened || philo->stats->times_to_eat == 0)
+		return (TRUE);
+	return (FALSE);
+}
+
 void	*routine(void *philos)
 {
 	t_philo	*philo;
@@ -58,16 +62,18 @@ void	*routine(void *philos)
 	philo = (t_philo *)philos;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
-	while (!philo->stats->death_has_happened)
+	while (!is_dinner_over(philo))
 	{
-		if (get_forks(philo))
+		if (get_forks(philo) && !philo->stats->death_has_happened)
 		{
 			eat(philo);
 			drop_forks(philo);
-			if (!sleep(philo))
+			if (sleep(philo) == FALSE)
+			{
+				display_action(get_timestamp() - philo->stats->start_time, philo, DIE);
 				break ;
+			}
 			think(philo);
-			sleep_ms(philo->stats->tt_sleep);
 		}
 	}
 	return (NULL);
@@ -85,7 +91,6 @@ int	create_threads(pthread_t *threads, t_philo *philos)
 				routine, (void *)&philos[i]) != SUCCESS)
 			return (ERROR);
 		++i;
-		printf("thread started: %d\n", i);
 	}
 	return (SUCCESS);
 }
@@ -100,7 +105,6 @@ int	join_threads(pthread_t *threads, const int number_of_threads)
 		if (pthread_join(threads[i], NULL) != SUCCESS)
 			return (ERROR);
 		++i;
-		printf("thread has finished: %d\n", i);
 	}
 	return (SUCCESS);
 }

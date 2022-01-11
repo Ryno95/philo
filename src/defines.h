@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 16:04:06 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 13:43:00 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef enum e_bool
 
 typedef struct s_display
 {
-	pthread_mutex_t	display_lock;
+	pthread_mutex_t	lock;
 	t_bool			is_in_use;
 }	t_display;
 
@@ -48,6 +48,7 @@ typedef struct s_philo_stats
 	unsigned int	tt_think;
 	unsigned int	tt_sleep;
 	unsigned int	max_meals;
+	int				times_to_eat;
 	t_bool			death_has_happened;
 	t_display		*display;
 }	t_philo_stats;

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 12:39:31 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 13:32:13 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,25 @@
 // 	return (SUCCESS);
 // }
 
+void	destroy_fork_mutexes(t_fork *forks, int num_of_forks)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_of_forks)
+	{
+		pthread_mutex_destroy(&forks[i].fork_lock);
+		++i;
+	}
+}
+
 void	teardown(t_fork *forks, t_philo *philos)
 {
+	destroy_fork_mutexes(forks, philos->stats->num_of_philos);
+	pthread_mutex_destroy(&philos->stats->display->lock);
 	free(forks);
 	free(philos);
+	free(philos->stats->display);
 }
 
 int	run(const char *argv[])
@@ -93,5 +108,6 @@ int	main(const int argc, const char *argv[])
 		return (ERROR);
 	if (run(argv) != SUCCESS)
 		printf("FUCKUP RUNNING\n");
+	// system("leaks philo");
 	return (SUCCESS);
 }

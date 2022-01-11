@@ -1,0 +1,77 @@
+./run.sh
+Process:         philo [29272]
+Path:            /Users/USER/Desktop/*/philo
+Load Address:    0x104972000
+Identifier:      philo
+Version:         ???
+Code Type:       X86-64
+Parent Process:  bash [29271]
+
+Date/Time:       2022-01-11 13:28:44.313 +0200
+Launch Time:     2022-01-11 13:28:43.956 +0200
+OS Version:      Mac OS X 10.15.7 (19H1519)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+----
+
+leaks Report Version: 4.0
+Process 29272: 156 nodes malloced for 12 KB
+Process 29272: 0 leaks for 0 total leaked bytes.
+
+0 1 has taken a fork
+0 1 has taken a fork
+0 1 is eating
+0 3 has taken a fork
+0 3 has taken a fork
+0 3 is eating
+20 3 is sleeping
+0 4 has taken a fork
+0 4 has taken a fork
+21 4 is eating
+0 2 has taken a fork
+0 2 has taken a fork
+21 2 is eating
+20 1 is sleeping
+30 3 is thinking
+31 1 is thinking
+41 2 is sleeping
+0 1 has taken a fork
+0 1 has taken a fork
+42 1 is eating
+0 3 has taken a fork
+0 3 has taken a fork
+42 3 is eating
+41 4 is sleeping
+51 2 is thinking
+53 4 is thinking
+62 1 is sleeping
+21 2 has taken a fork
+21 2 has taken a fork
+63 2 is eating
+21 4 has taken a fork
+21 4 has taken a fork
+64 4 is eating
+62 3 is sleeping
+72 1 is thinking
+74 3 is thinking
+83 2 is sleeping
+42 1 has taken a fork
+42 1 has taken a fork
+42 3 has taken a fork
+42 3 has taken a fork
+84 3 is eating
+84 1 is eating
+84 4 is sleeping
+93 2 is thinking
+94 4 is thinking
+106 3 is sleeping
+106 1 died
+64 4 has taken a fork
+64 4 has taken a fork
+106 4 is eating
+thread has finished: 1
+thread has finished: 2
+115 3 died
+thread has finished: 3
+126 4 died
+thread has finished: 4

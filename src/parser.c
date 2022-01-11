@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 15:52:19 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 13:43:14 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_display	*initiate_display()
 	if (!disp)
 		return (NULL);
 	disp->is_in_use = FALSE;
-	if (pthread_mutex_init(&disp->display_lock, NULL) != SUCCESS)
+	if (pthread_mutex_init(&disp->lock, NULL) != SUCCESS)
 		{
 			printf("init mutex display lock failed\n");
 			return (NULL);
@@ -77,6 +77,7 @@ t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
 		stats->max_meals = get_number(argv[5]);
 	else
 		stats->max_meals = -1;
+	stats->times_to_eat = stats->num_of_philos;
 	if (!is_valid_stats(stats))
 		return (ERROR);
 	return (SUCCESS);

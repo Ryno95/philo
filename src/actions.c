@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 14:16:55 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 18:20:31 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 void	display_action(t_time_ms time, t_philo *philo,
 			t_action_codes action_code)
 {
-	static const char	*actions[] = {
-										"is eating",
-										"is sleeping",
-										"is thinking",
-										"has taken a fork",
-										"died"
-									};
+	static const char	*actions[] = \
+	{
+		"is eating",
+		"is sleeping",
+		"is thinking",
+		"has taken a fork",
+		"died"
+	};
 
 	if (philo->stats->death_has_happened)
 		return ;

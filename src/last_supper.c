@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 14:19:03 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 14:26:07 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 18:16:59 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	drop_forks(const t_philo *philo)
 	philo->right_fork->is_taken = FALSE;
 }
 
-static t_bool	is_last_supper_over(t_philo *philo)
+static t_bool	last_supper_is_over(t_philo *philo)
 {
 	if (philo->stats->death_has_happened || philo->stats->times_to_eat == 0)
 		return (TRUE);
@@ -62,7 +62,7 @@ void	*last_supper(void *philos)
 	philo = (t_philo *)philos;
 	if ((philo->index + 1) % 2 != 0)
 		sleep_ms(1);
-	while (!is_last_supper_over(philo))
+	while (!last_supper_is_over(philo))
 	{
 		if (get_forks(philo) && !philo->stats->death_has_happened)
 		{

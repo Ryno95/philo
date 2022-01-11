@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:14:51 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:24:37 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_display	*initiate_display(void)
 	return (disp);
 }
 
-t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats)
+t_exit_status	get_philo_stats(const char *argv[], t_philo_stats *stats)
 {
 	stats->start_time = get_time_ms();
 	stats->num_of_philos = get_number(argv[1]);

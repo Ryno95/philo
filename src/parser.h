@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:37:56 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:16:13 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:24:37 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int				ft_atoi(const char *str);
 int				ft_strlen(const char *str);
 int				get_number(const char *str);
 t_bool			is_valid_input(const int argc, const char *argv[]);
-t_exit_status	parse_philo_stats(const char *argv[], t_philo_stats *stats);
+t_exit_status	get_philo_stats(const char *argv[], t_philo_stats *stats);
 
 #endif

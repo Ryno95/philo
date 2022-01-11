@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:19:55 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:24:02 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef enum e_exit_status
 	ERROR,
 	INPUT_ERROR,
 	PHILO_CREATION_ERROR,
-	THREAD_CREATION_ERROR
+	THREAD_CREATION_ERROR,
+	THREAD_JOINING_ERROR
 }	t_exit_status;
 
 typedef enum e_bool

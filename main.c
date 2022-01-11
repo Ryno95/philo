@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:19:38 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/11 20:24:37 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,14 @@ int	run(const char *argv[])
 
 	forks = NULL;
 	philos = NULL;
-	if (parse_philo_stats(argv, &stats) == ERROR)
+	if (get_philo_stats(argv, &stats) == ERROR)
 		return (INPUT_ERROR);
-	if (create_philosphers(&stats, &forks, &philos) != SUCCESS)
-	{
-		printf("error creating philos\n");
+	if (create_philosphers(&stats, &forks, &philos) == ERROR)
 		return (PHILO_CREATION_ERROR);
-	}
-	if (create_threads(&threads[0], philos) != SUCCESS)
+	if (create_threads(&threads[0], philos) == ERROR)
 		return (THREAD_CREATION_ERROR);
-	join_threads(&threads[0], philos->stats->num_of_philos);
+	if (join_threads(&threads[0], philos->stats->num_of_philos) == ERROR)
+		return (THREAD_JOINING_ERROR);
 	teardown(forks, philos);
 	return (SUCCESS);
 }

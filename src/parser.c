@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:24:37 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 10:48:12 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_number(const char *str)
 t_bool	is_valid_stats(t_philo_stats *stats)
 {
 	if (stats->num_of_philos < 2 || !stats->tt_die || !stats->tt_eat
-		|| !stats->tt_sleep || !stats->max_meals || !stats->display)
+		|| !stats->tt_sleep || !stats->max_meals)
 	{
 		printf("%s\n", USAGE_STRING);
 		return (FALSE);
@@ -75,13 +75,15 @@ t_exit_status	get_philo_stats(const char *argv[], t_philo_stats *stats)
 	stats->tt_eat = get_number(argv[3]);
 	stats->tt_sleep = get_number(argv[4]);
 	stats->death_has_happened = FALSE;
-	stats->display = initiate_display();
 	if (argv[5])
 		stats->max_meals = get_number(argv[5]);
 	else
 		stats->max_meals = -1;
 	stats->times_to_eat = stats->num_of_philos;
 	if (!is_valid_stats(stats))
+		return (ERROR);
+	stats->display = initiate_display();
+	if (!stats->display)
 		return (ERROR);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:24:02 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 16:03:38 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_philo_stats
 	unsigned int	tt_eat;
 	unsigned int	tt_think;
 	unsigned int	tt_sleep;
-	unsigned int	max_meals;
+	int				max_meals;
 	int				times_to_eat;
 	t_bool			death_has_happened;
 	t_display		*display;
@@ -69,7 +69,8 @@ typedef struct s_philo
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_time_ms		last_meal;
-	unsigned int	num_of_meals;
+	int				num_of_meals;
+	t_bool			is_dead;
 }	t_philo;
 
 t_time_ms	get_timestamp(t_philo *philo);

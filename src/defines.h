@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:25:19 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 16:03:38 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 16:53:25 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_philo_stats
 	int				times_to_eat;
 	t_bool			death_has_happened;
 	t_display		*display;
+	pthread_mutex_t	eat_counter_lock;
 }	t_philo_stats;
 
 typedef struct s_fork

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 16:08:36 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 17:00:37 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_time.h"
 #include <stdio.h>
 #include "actions.h"
+#include <unistd.h>
 
 void	display_action(t_time_ms time, t_philo *philo,
 			t_action_codes action_code)
@@ -64,7 +65,11 @@ void	eat(t_philo *philo)
 	{
 		++philo->num_of_meals;
 		if (philo->num_of_meals == philo->stats->max_meals)
+		{
+			pthread_mutex_lock(&philo->stats->eat_counter_lock);
 			--(philo->stats->times_to_eat);
+			pthread_mutex_unlock(&philo->stats->eat_counter_lock);
+		}
 	}
 	philo->last_meal = time_stamp;
 }

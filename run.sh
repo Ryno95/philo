@@ -6,4 +6,4 @@
 ./philo 5 800 100 100 7 # should stop
 # ./philo 4 410 200 100  #should not die
 ./philo 4 310 200 100  #should die``
-# ./philo 2 190 100 50
+./philo 2 190 100 50

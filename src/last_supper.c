@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 14:19:03 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 16:12:39 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 17:02:23 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 static t_bool	can_take_fork(t_philo *philo)
 {
-	if (philo->left_fork->is_taken || philo->right_fork->is_taken
-		|| philo->stats->death_has_happened)
+	if (philo->stats->death_has_happened || \
+		philo->left_fork->is_taken || philo->right_fork->is_taken)
 		return (FALSE);
 	return (TRUE);
 }
@@ -34,9 +34,9 @@ static t_bool	get_forks(t_philo *philo)
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
+	display_action(time_stamp, philo, TAKE_FORK);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
-	display_action(time_stamp, philo, TAKE_FORK);
 	display_action(time_stamp, philo, TAKE_FORK);
 	return (TRUE);
 }

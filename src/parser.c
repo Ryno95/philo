@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 10:48:12 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/01/12 16:53:15 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ t_exit_status	get_philo_stats(const char *argv[], t_philo_stats *stats)
 		return (ERROR);
 	stats->display = initiate_display();
 	if (!stats->display)
+		return (ERROR);
+	if (pthread_mutex_init(&stats->eat_counter_lock, NULL) != SUCCESS)
 		return (ERROR);
 	return (SUCCESS);
 }

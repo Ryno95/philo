@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 17:00:37 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 12:12:11 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 void	display_action(t_time_ms time, t_philo *philo,
 			t_action_codes action_code)
 {
+	t_time_ms ahora;
+	(void)time;
 	static const char	*actions[] = \
 	{
 		"is eating",
@@ -36,9 +38,10 @@ void	display_action(t_time_ms time, t_philo *philo,
 		sleep_ms(1);
 	if (!philo->stats->display->is_in_use)
 	{
+		ahora = get_time_ms() - philo->stats->start_time;
 		pthread_mutex_lock(&philo->stats->display->lock);
 		philo->stats->display->is_in_use = TRUE;
-		printf("%llu %d %s\n", time, philo->index, actions[action_code]);
+		printf("%llu %d %s\n", ahora, philo->index, actions[action_code]);
 		pthread_mutex_unlock(&philo->stats->display->lock);
 		philo->stats->display->is_in_use = FALSE;
 	}

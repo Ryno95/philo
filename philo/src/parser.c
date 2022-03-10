@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/03/10 12:21:14 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 13:06:30 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ t_bool	is_valid_input(const int argc, const char *argv[])
 {
 	(void)argv;
 	if (argc != 5 && argc != 6)
+	{
+		printf("%s\n", USAGE_STRING);
 		return (FALSE);
+	}
 	return (TRUE);
 }
 

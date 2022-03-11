@@ -2,7 +2,7 @@ NAME=philo
 TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
+CFLAGS_ASAN=$(CFLAGS)
 LDFLAGS=-lpthread
 
 SRCS= 	src/parser.c src/parser_utils.c src/philosophers.c\
@@ -20,7 +20,7 @@ $(NAME): $(SRCS)
 	$(CC) $(CFLAGS) main.c $(SRCS) $(LDFLAGS) -o $(NAME)
 
 run: $(NAME)
-	./run.sh
+	./../run.sh
 
 test: $(SRCS) $(TEST_SRCS)
 	$(CC) $(CFLAGS) $(SRCS) $(TEST_SRCS) $(LDFLAGS) -o $(TEST_NAME)
@@ -32,7 +32,7 @@ acceptence: $(NAME)
 
 run_asan: $(SRCS)
 	@$(CC) $(CFLAGS_ASAN) main.c $(SRCS) $(TEST_FILES) -o $(NAME)
-	./run.sh
+	./../run.sh
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

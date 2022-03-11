@@ -14,7 +14,7 @@ jobs:
           command: norminette main.c src/
       - run:
           name: Unit_tests
-          command: make test
+          command: cd philo/ && make test
       - run:
           name: Acceptance-Test ASAN
           command: make run_asan

@@ -2,7 +2,7 @@ NAME=philo
 TEST_NAME=test_philo
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-CFLAGS_ASAN=$(CFLAGS)
+CFLAGS_ASAN=$(CFLAGS) -fsanitize=leak
 LDFLAGS=-lpthread
 
 SRCS= 	src/parser.c src/parser_utils.c src/philosophers.c\

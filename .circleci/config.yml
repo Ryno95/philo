@@ -17,4 +17,4 @@ jobs:
           command: cd philo/ && make test
       - run:
           name: Acceptance-Test ASAN
-          command: make run_asan
+          command: cd philo/ make run_asan

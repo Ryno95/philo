@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:37:56 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/11 20:24:37 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 13:07:09 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define INVALID_NUMBER 0
 # include "defines.h"
 
-# define USAGE_STRING "Usage: ./philo num_of_philos[ > 1] \
+# define USAGE_STRING "Usage: ./philo num_of_philos[ > 0] \
 tt_die tt_eat tt_sleep [number_of_times_each_philosopher_must_eat] "
 
 int				ft_isdigit(int c);

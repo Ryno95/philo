@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/10 11:45:54 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 17:00:37 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 12:39:38 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "actions.h"
 #include <unistd.h>
 
-void	display_action(t_time_ms time, t_philo *philo,
-			t_action_codes action_code)
+void	display_action(t_philo *philo, t_action_codes action_code)
 {
 	static const char	*actions[] = \
 	{
@@ -27,6 +26,7 @@ void	display_action(t_time_ms time, t_philo *philo,
 		"has taken a fork",
 		"died"
 	};
+	t_time_ms			ahora;
 
 	if (philo->stats->death_has_happened)
 		return ;
@@ -36,9 +36,10 @@ void	display_action(t_time_ms time, t_philo *philo,
 		sleep_ms(1);
 	if (!philo->stats->display->is_in_use)
 	{
+		ahora = get_time_ms() - philo->stats->start_time;
 		pthread_mutex_lock(&philo->stats->display->lock);
 		philo->stats->display->is_in_use = TRUE;
-		printf("%llu %d %s\n", time, philo->index, actions[action_code]);
+		printf("%llu %d %s\n", ahora, philo->index, actions[action_code]);
 		pthread_mutex_unlock(&philo->stats->display->lock);
 		philo->stats->display->is_in_use = FALSE;
 	}
@@ -58,7 +59,7 @@ void	eat(t_philo *philo)
 
 	if (philo->stats->death_has_happened)
 		return ;
-	display_action(time_stamp, philo, EAT);
+	display_action(philo, EAT);
 	sleep_ms(philo->stats->tt_eat);
 	drop_forks(philo);
 	if (philo->stats->max_meals != -1)
@@ -84,18 +85,18 @@ t_bool	start_sleep(t_philo *philo)
 		return (FALSE);
 	if (wake_up_time > death_time)
 	{
-		display_action(time_stamp, philo, SLEEP);
+		display_action(philo, SLEEP);
 		sleep_ms(death_time - time_stamp);
 		return (FALSE);
 	}
-	display_action(time_stamp, philo, SLEEP);
+	display_action(philo, SLEEP);
 	sleep_ms(philo->stats->tt_sleep);
 	return (TRUE);
 }
 
 void	think(t_philo *philo)
 {
-	display_action(get_timestamp(philo), philo, THINK);
+	display_action(philo, THINK);
 	sleep_ms(2);
 	return ;
 }

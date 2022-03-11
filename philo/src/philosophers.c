@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/01 15:10:40 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/10 13:17:36 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 12:24:10 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ t_philo	*create_philo_array(t_philo_stats *stats, t_fork *forks)
 	{
 		philosophers[i].index = i + 1;
 		philosophers[i].stats = stats;
-		if (i == 0)
+		if (i == 0 && stats->num_of_philos > 1)
 			philosophers[i].right_fork = &forks[stats->num_of_philos - 1];
-		else
+		else if (stats->num_of_philos > 1)
 			philosophers[i].right_fork = &forks[i - 1];
+		else
+			philosophers[i].right_fork = NULL;
 		philosophers[i].left_fork = &forks[i];
 		philosophers[i].num_of_meals = 0;
 		philosophers[i].last_meal = 0;

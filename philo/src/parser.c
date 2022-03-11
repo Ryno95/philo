@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/29 13:26:45 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 16:53:15 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 13:06:30 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ t_bool	is_valid_input(const int argc, const char *argv[])
 {
 	(void)argv;
 	if (argc != 5 && argc != 6)
+	{
+		printf("%s\n", USAGE_STRING);
 		return (FALSE);
+	}
 	return (TRUE);
 }
 
@@ -39,10 +42,9 @@ int	get_number(const char *str)
 		return (ft_atoi(str));
 }
 
-// printf("Please entire only integer values bigger than zero\n");
 t_bool	is_valid_stats(t_philo_stats *stats)
 {
-	if (stats->num_of_philos < 2 || !stats->tt_die || !stats->tt_eat
+	if (stats->num_of_philos < 1 || !stats->tt_die || !stats->tt_eat
 		|| !stats->tt_sleep || !stats->max_meals)
 	{
 		printf("%s\n", USAGE_STRING);

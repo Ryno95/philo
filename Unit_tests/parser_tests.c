@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../src/parser.h"
+#include "../philo/src/parser.h"
 
 CTEST(Parsing, check_is_valid_input)
 {

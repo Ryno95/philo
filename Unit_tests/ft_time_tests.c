@@ -1,8 +1,7 @@
 #include "ctest.h"
 #include <stdlib.h>
 #include <stdio.h>
-// #include "../src/ft_time.h"
-#include "../src/defines.h"
+#include "../philo/src/defines.h"
 
 static t_time_ms get_time_difference(int wait_time)
 {

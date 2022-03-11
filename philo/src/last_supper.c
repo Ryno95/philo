@@ -6,7 +6,7 @@
 /*   By: rmeiboom <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/11 14:19:03 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 17:02:23 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 12:40:04 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,14 @@ static t_bool	can_take_fork(t_philo *philo)
 
 static t_bool	get_forks(t_philo *philo)
 {
-	const int	time_stamp = get_timestamp(philo);
-
 	if (!can_take_fork(philo))
 		return (FALSE);
 	philo->left_fork->is_taken = \
 	pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
-	display_action(time_stamp, philo, TAKE_FORK);
+	display_action(philo, TAKE_FORK);
 	philo->right_fork->is_taken = \
 		pthread_mutex_lock(&philo->right_fork->fork_lock) == 0;
-	display_action(time_stamp, philo, TAKE_FORK);
+	display_action(philo, TAKE_FORK);
 	return (TRUE);
 }
 
@@ -47,10 +45,20 @@ static t_bool	last_supper_is_over(t_philo *philo)
 		return (TRUE);
 	else if (philo->last_meal + philo->stats->tt_die < get_timestamp(philo))
 	{
-		display_action(get_timestamp(philo), philo, DIE);
+		display_action(philo, DIE);
 		return (TRUE);
 	}
 	return (FALSE);
+}
+
+static void	*single_philo_exception(t_philo *philo)
+{
+	philo->left_fork->is_taken = \
+		pthread_mutex_lock(&philo->left_fork->fork_lock) == 0;
+	display_action(philo, TAKE_FORK);
+	sleep_ms(philo->stats->tt_die);
+	display_action(philo, DIE);
+	return (NULL);
 }
 
 void	*last_supper(void *philos)
@@ -58,6 +66,8 @@ void	*last_supper(void *philos)
 	t_philo	*philo;
 
 	philo = (t_philo *)philos;
+	if (philo->stats->num_of_philos == 1)
+		return (single_philo_exception(philo));
 	if ((philo->index + 1) % 2 != 0)
 		usleep(2000);
 	while (!last_supper_is_over(philo))
@@ -68,7 +78,7 @@ void	*last_supper(void *philos)
 			eat(philo);
 			if (start_sleep(philo) == FALSE)
 			{
-				display_action(get_timestamp(philo), philo, DIE);
+				display_action(philo, DIE);
 				break ;
 			}
 			think(philo);

@@ -6,7 +6,7 @@
 /*   By: rmeiboom <rmeiboom@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/22 10:02:02 by rmeiboom      #+#    #+#                 */
-/*   Updated: 2022/01/12 16:54:01 by rmeiboom      ########   odam.nl         */
+/*   Updated: 2022/03/10 13:09:10 by rmeiboom      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	run(const char *argv[])
 		ret = THREAD_JOINING_ERROR;
 	else
 		ret = SUCCESS;
-	teardown(forks, philos);
+	if (ret == SUCCESS || (ret >= 3 && ret <= 5))
+		teardown(forks, philos);
 	return (ret);
 }
 
